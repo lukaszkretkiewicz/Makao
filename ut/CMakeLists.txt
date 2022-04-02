@@ -1,5 +1,7 @@
 add_subdirectory(Hello)
+
 add_executable(${PROJECT_NAME}_test main.cpp Hello/helloTests.cpp)
+
 target_link_libraries(${PROJECT_NAME}_test hello_test_lib gtest gtest_main gmock)
 
 include(GoogleTest)

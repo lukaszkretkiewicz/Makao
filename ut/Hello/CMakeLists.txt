@@ -4,4 +4,8 @@ set(
 )
 
 add_library(hello_test_lib ${HELLO_TEST_SOURCES})
-target_link_libraries(hello_test_lib hello_lib )
+target_include_directories(hello_test_lib PUBLIC ${CMAKE_SOURCE_DIR}/src/Deck)
+target_include_directories(hello_test_lib PUBLIC ${CMAKE_SOURCE_DIR}/src/Pile)
+
+
+target_link_libraries(hello_test_lib hello_lib deck_lib pile_lib)
