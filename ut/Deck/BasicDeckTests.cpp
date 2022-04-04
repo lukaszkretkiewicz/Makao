@@ -16,3 +16,5 @@ TEST(PileTest, whenGameStartsOneCardShouldBeDrawnFromTheDeck) {
   ASSERT_EQ(pile.getNumberOfCards(), 1u);
   ASSERT_EQ(deck.getCards().size(), 51u);
 }
+
+// TEST(PileTest)

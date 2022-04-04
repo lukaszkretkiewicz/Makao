@@ -1,0 +1,14 @@
+set(
+    TEST_SOURCES
+    BasicDeckTests.cpp
+)
+set(
+    MODULE_NAME deck_test_lib
+)
+
+add_library(${MODULE_NAME} ${TEST_SOURCES})
+target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src/Deck)
+target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src/Pile)
+
+
+target_link_libraries(${MODULE_NAME} deck_lib pile_lib)

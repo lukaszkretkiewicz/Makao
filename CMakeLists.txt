@@ -9,6 +9,6 @@ include_directories (
     ${GTEST_INCLUDE_DIRS}
     ${GMOCK_INCLUDE_DIRS}
     )
-    add_subdirectory(src)
-    add_subdirectory(ut)
-    enable_testing()
+add_subdirectory(src)
+add_subdirectory(ut)
+enable_testing()

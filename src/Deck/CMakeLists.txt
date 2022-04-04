@@ -5,8 +5,8 @@ set(
 )
 
 set(
-    DECK_SOURCES
+    MODULE_NAME deck_lib
 )
 
-add_library(deck_lib ${DECK_HEADERS} ${DECK_SOURCES})
-set_target_properties(deck_lib PROPERTIES LINKER_LANGUAGE CXX)
+add_library(${MODULE_NAME} ${DECK_HEADERS} ${DECK_SOURCES})
+set_target_properties(${MODULE_NAME} PROPERTIES LINKER_LANGUAGE CXX)
