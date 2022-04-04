@@ -1,4 +1,6 @@
 #pragma once
+#include <initializer_list>
+
 enum class Color { Spades, Clubs, Hearts, Diamonds };
 
 enum class Figures {

@@ -1,5 +1,4 @@
-class Hello
-{
-    public:
-    void print() const;
+class Hello {
+public:
+  void print() const;
 };
