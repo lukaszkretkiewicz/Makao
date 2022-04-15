@@ -1,6 +1,7 @@
 set(
     PILE_HEADERS
     Pile.hpp
+    IPile.hpp
 )
 
 set(

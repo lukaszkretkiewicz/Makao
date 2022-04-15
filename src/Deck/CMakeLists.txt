@@ -1,5 +1,6 @@
 set(
     DECK_HEADERS
+    IDeck.hpp
     Deck.hpp
     Card.hpp
 )

@@ -1,8 +1,19 @@
 add_subdirectory(Deck)
+add_subdirectory(Player)
+add_subdirectory(Pile)
 
-add_executable(${PROJECT_NAME}_test main.cpp Deck/BasicDeckTests.cpp)
+set(SOURCES Deck/DeckTests.cpp Pile/PileTests.cpp Player/PlayerTests.cpp)
 
-target_link_libraries(${PROJECT_NAME}_test deck_test_lib gtest gtest_main gmock)
+add_executable(${PROJECT_NAME}_test main.cpp ${SOURCES})
+
+set(
+    TEST_LIBS
+    deck_test_lib
+    pile_test_lib
+    player_test_lib
+)
+
+target_link_libraries(${PROJECT_NAME}_test ${TEST_LIBS} gtest gtest_main gmock)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}_test)

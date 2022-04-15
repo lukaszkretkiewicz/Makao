@@ -1,19 +1,25 @@
+#pragma once
 #include "Card.hpp"
+#include "IDeck.hpp"
+#include <iostream>
 #include <vector>
-class Deck {
+
+class Deck : public IDeck {
   std::vector<Card> cards;
 
-public:
-  Deck() {
+  void createCards() {
     for (auto figure : figures_all) {
       for (auto color : colors_all)
         cards.push_back(Card{color, figure});
     }
   }
 
-  auto getCards() const { return cards; }
+public:
+  Deck() { createCards(); }
 
-  Card pullCard() {
+  std::vector<Card> getCards() const override { return cards; }
+
+  Card pullCard() override {
     auto result = cards.back();
     cards.pop_back();
     return result;
