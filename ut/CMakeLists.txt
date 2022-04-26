@@ -1,13 +1,20 @@
+add_subdirectory(Randomizer)
 add_subdirectory(Deck)
 add_subdirectory(Player)
 add_subdirectory(Pile)
 
-set(SOURCES Deck/DeckTests.cpp Pile/PileTests.cpp Player/PlayerTests.cpp)
+set(
+    SOURCES
+    Randomizer/RandomizerTests.cpp
+    Deck/DeckTests.cpp
+    Pile/PileTests.cpp 
+    Player/PlayerTests.cpp )
 
 add_executable(${PROJECT_NAME}_test main.cpp ${SOURCES})
 
 set(
     TEST_LIBS
+    randomizer_test_lib
     deck_test_lib
     pile_test_lib
     player_test_lib

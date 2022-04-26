@@ -1,3 +1,4 @@
+add_subdirectory(Randomizer)
 add_subdirectory(Deck)
 add_subdirectory(Pile)
 add_subdirectory(Player)
@@ -8,5 +9,7 @@ target_link_libraries(
     ${PROJECT_NAME}_exe 
     deck_lib
     pile_lib
+    randomizer_lib
     player_lib
-    helper_lib)
+    helper_lib
+    )

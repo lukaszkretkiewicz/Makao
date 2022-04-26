@@ -4,6 +4,6 @@
 
 class DeckMock : public IDeck {
 public:
-  MOCK_METHOD(std::vector<Card>, getCards, (), (const, override));
+  MOCK_METHOD(Cards, getCards, (), (const, override));
   MOCK_METHOD(Card, pullCard, (), (override));
 };

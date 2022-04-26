@@ -1,27 +1,24 @@
 #pragma once
 #include "Card.hpp"
 #include "IDeck.hpp"
+#include "IRandomizer.hpp"
 #include <iostream>
+#include <memory>
 #include <vector>
 
-class Deck : public IDeck {
-  std::vector<Card> cards;
+class IRandomizer;
 
-  void createCards() {
-    for (auto figure : figures_all) {
-      for (auto color : colors_all)
-        cards.push_back(Card{color, figure});
-    }
-  }
+class Deck : public IDeck {
+  Cards cards;
+
+  void createCards();
 
 public:
-  Deck() { createCards(); }
+  Deck();
 
-  std::vector<Card> getCards() const override { return cards; }
+  Deck(const IRandomizer &);
 
-  Card pullCard() override {
-    auto result = cards.back();
-    cards.pop_back();
-    return result;
-  }
+  Cards getCards() const override;
+
+  Card pullCard() override;
 };

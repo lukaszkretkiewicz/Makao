@@ -1,5 +1,6 @@
 #include "Deck.hpp"
 #include "PlayerMock.hpp"
+#include "RandomizerMock.hpp"
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 namespace tests {
@@ -24,6 +25,12 @@ TEST(DeckTest, whenCardIsPulled_ThisCardShouldBeRemovedFromDeck) {
 
   ASSERT_EQ(sut.getCards().size(), 51u);
   EXPECT_THAT(sut.getCards(), Not(Contains(card)));
+}
+
+TEST(DeckTest, deckShouldBeRandomizedByExternalRandomizer) {
+  RandomizerMock randomizer;
+  EXPECT_CALL(randomizer, shuffleCards(_)).Times(1);
+  Deck sut(randomizer);
 }
 
 // TEST(PlayerTest, playerCanPutSpecificCardOnPile) {

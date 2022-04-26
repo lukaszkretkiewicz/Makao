@@ -1,6 +1,8 @@
 #pragma once
 #include <initializer_list>
 #include <ostream>
+#include <vector>
+
 enum class Color { Spades, Clubs, Hearts, Diamonds };
 
 enum class Figure {
@@ -19,6 +21,13 @@ enum class Figure {
   Ace
 };
 
+struct Card {
+  Color color;
+  Figure figure;
+};
+
+using Cards = std::vector<Card>;
+
 constexpr std::initializer_list<Figure> figures_all = {
     Figure::Two,   Figure::Three, Figure::Four, Figure::Five, Figure::Six,
     Figure::Seven, Figure::Eigth, Figure::Nine, Figure::Ten,  Figure::Jack,
@@ -26,11 +35,6 @@ constexpr std::initializer_list<Figure> figures_all = {
 
 constexpr std::initializer_list<Color> colors_all = {
     Color::Clubs, Color::Spades, Color::Diamonds, Color::Hearts};
-
-struct Card {
-  Color color;
-  Figure figure;
-};
 
 inline bool operator==(const Card &lhs, const Card &rhs) {
   return (lhs.color == rhs.color and lhs.figure == rhs.figure);
