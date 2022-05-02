@@ -7,9 +7,9 @@ add_subdirectory(Helper)
 add_executable(${PROJECT_NAME}_exe main.cpp)
 target_link_libraries(
     ${PROJECT_NAME}_exe 
-    deck_lib
-    pile_lib
-    randomizer_lib
-    player_lib
-    helper_lib
+    Deck_lib
+    Pile_lib
+    Randomizer_lib
+    Player_lib
+    Helper_lib
     )

@@ -1,11 +1,11 @@
-set(
-    HEADERS
-    Helper.hpp
-)
+# General cmake
+get_filename_component(FOLDER_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-set(
-    MODULE_NAME helper_lib
-)
+set(MODULE_NAME ${FOLDER_NAME}_lib)
 
-add_library(${MODULE_NAME} ${HEADERS})
+file(GLOB SOURCES CONFIGURE_DEPENDS "*.hpp" "*.cpp")
+
+add_library(${MODULE_NAME} ${SOURCES})
+
 set_target_properties(${MODULE_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+# Additional libraries to include/link manualy

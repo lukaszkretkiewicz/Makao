@@ -14,10 +14,10 @@ add_executable(${PROJECT_NAME}_test main.cpp ${SOURCES})
 
 set(
     TEST_LIBS
-    randomizer_test_lib
-    deck_test_lib
-    pile_test_lib
-    player_test_lib
+    Randomizer_test
+    Deck_test
+    Pile_test
+    Player_test
 )
 
 target_link_libraries(${PROJECT_NAME}_test ${TEST_LIBS} gtest gtest_main gmock)
