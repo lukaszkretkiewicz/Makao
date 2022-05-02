@@ -12,4 +12,5 @@ target_link_libraries(
     Randomizer_lib
     Player_lib
     Helper_lib
+    sfml-window sfml-graphics sfml-network sfml-system
     )
