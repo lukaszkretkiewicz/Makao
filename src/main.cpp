@@ -1,4 +1,13 @@
-#include "Pile/Pile.hpp"
-#include <SFML/Graphics.hpp>
-#include <iostream>
-int main() { return 0; }
+#include "Game.hpp"
+#include "GuiAdapter.hpp"
+
+int main() {
+  GuiAdapter gui;
+  InputManager inputManager;
+  Renderer renderer;
+  Updater updater;
+  Game game(gui, inputManager, renderer, updater);
+
+  game.run();
+  return 0;
+}

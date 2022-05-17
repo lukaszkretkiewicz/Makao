@@ -12,7 +12,7 @@ enum class Figure {
   Five,
   Six,
   Seven,
-  Eigth,
+  Eight,
   Nine,
   Ten,
   Jack,
@@ -30,7 +30,7 @@ using Cards = std::vector<Card>;
 
 constexpr std::initializer_list<Figure> figures_all = {
     Figure::Two,   Figure::Three, Figure::Four, Figure::Five, Figure::Six,
-    Figure::Seven, Figure::Eigth, Figure::Nine, Figure::Ten,  Figure::Jack,
+    Figure::Seven, Figure::Eight, Figure::Nine, Figure::Ten,  Figure::Jack,
     Figure::Queen, Figure::King,  Figure::Ace};
 
 constexpr std::initializer_list<Color> colors_all = {
@@ -63,7 +63,7 @@ inline std::ostream &operator<<(std::ostream &os, const Card &card) {
   case Figure::Seven:
     os << "Seven ";
     break;
-  case Figure::Eigth:
+  case Figure::Eight:
     os << "Eight ";
     break;
   case Figure::Nine:
@@ -81,9 +81,6 @@ inline std::ostream &operator<<(std::ostream &os, const Card &card) {
   case Figure::King:
     os << "King ";
     break;
-  default:
-    os << "Wrong figure ";
-    break;
   }
 
   switch (card.color) {
@@ -98,9 +95,6 @@ inline std::ostream &operator<<(std::ostream &os, const Card &card) {
     break;
   case Color::Hearts:
     os << "Hearts" << std::endl;
-    break;
-  default:
-    os << "Wrong color" << std::endl;
     break;
   }
   return os;
