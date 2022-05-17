@@ -1,4 +1,5 @@
 #include "Deck.hpp"
+#include "IRandomizer.hpp"
 
 Deck::Deck() { createCards(); }
 

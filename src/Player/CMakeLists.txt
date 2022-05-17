@@ -9,4 +9,4 @@ add_library(${MODULE_NAME} ${SOURCES})
 
 set_target_properties(${MODULE_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 # Additional libraries to include/link manualy
-target_include_directories(${MODULE_NAME} PUBLIC Deck_lib)
+target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src/Deck)

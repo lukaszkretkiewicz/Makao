@@ -2,12 +2,12 @@
 #include "IPile.hpp"
 #include <stack>
 class Pile : public IPile {
+public:
+  Pile(IDeck &deck);
+  void addCard(const Card &card);
+  size_t getNumberOfCards() const;
+
 private:
   std::stack<Card> cards;
   IDeck &deck;
-
-public:
-  Pile(IDeck &deck) : deck(deck) { addCard(deck.pullCard()); }
-  void addCard(const Card &card) { cards.push(card); }
-  size_t getNumberOfCards() const { return cards.size(); }
 };

@@ -8,20 +8,9 @@
 
 class Game : public IGame {
 public:
-  Game(IGuiAdapter &gui, IInputManager &inputManager, IRenderer &renderer,
-       IUpdater &updater)
-      : gui(gui), inputManager(inputManager), renderer(renderer),
-        updater(updater) {
-    setupWindow();
-  }
+  Game(IGuiAdapter &, IInputManager &, IRenderer &, IUpdater &);
 
-  void run() override {
-    while (!isDone()) {
-      inputManager.handleEvents(gui);
-      updater.update();
-      renderer.render(gui);
-    }
-  };
+  void run() override;
 
 private:
   IGuiAdapter &gui;
@@ -29,6 +18,6 @@ private:
   IRenderer &renderer;
   IUpdater &updater;
 
-  bool isDone() { return gui.shouldCloseWindow(); }
-  void setupWindow() { gui.setupWindow("Makao"); }
+  bool isDone() const;
+  void setupWindow();
 };
