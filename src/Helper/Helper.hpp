@@ -1,5 +1,8 @@
 #pragma once
 
-namespace helper {
-enum class DrawCardType {};
+namespace helper
+{
+enum class DrawCardType
+{
+};
 }

@@ -1,7 +1,8 @@
 #include "Deck.hpp"
 #include "IPile.hpp"
 #include <stack>
-class Pile : public IPile {
+class Pile : public IPile
+{
 public:
   Pile(IDeck &deck);
   void addCard(const Card &card);

@@ -3,9 +3,16 @@
 #include <ostream>
 #include <vector>
 
-enum class Color { Spades, Clubs, Hearts, Diamonds };
+enum class Color
+{
+  Spades,
+  Clubs,
+  Hearts,
+  Diamonds
+};
 
-enum class Figure {
+enum class Figure
+{
   Two,
   Three,
   Four,
@@ -21,7 +28,8 @@ enum class Figure {
   Ace
 };
 
-struct Card {
+struct Card
+{
   Color color;
   Figure figure;
 };
@@ -36,12 +44,15 @@ constexpr std::initializer_list<Figure> figures_all = {
 constexpr std::initializer_list<Color> colors_all = {
     Color::Clubs, Color::Spades, Color::Diamonds, Color::Hearts};
 
-inline bool operator==(const Card &lhs, const Card &rhs) {
+inline bool operator==(const Card &lhs, const Card &rhs)
+{
   return (lhs.color == rhs.color and lhs.figure == rhs.figure);
 }
 
-inline std::ostream &operator<<(std::ostream &os, const Card &card) {
-  switch (card.figure) {
+inline std::ostream &operator<<(std::ostream &os, const Card &card)
+{
+  switch (card.figure)
+  {
   case Figure::Ace:
     os << "Ace ";
     break;
@@ -83,7 +94,8 @@ inline std::ostream &operator<<(std::ostream &os, const Card &card) {
     break;
   }
 
-  switch (card.color) {
+  switch (card.color)
+  {
   case Color::Clubs:
     os << "Clubs" << std::endl;
     break;

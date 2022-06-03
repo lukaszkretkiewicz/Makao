@@ -18,4 +18,4 @@ target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/ut/Player/m
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/ut/Randomizer/mock/include)
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src/Randomizer)
 
-target_link_libraries(${MODULE_NAME} Randomizer_lib Player_mock)
+target_link_libraries(${MODULE_NAME} Randomizer_lib Player_mock )

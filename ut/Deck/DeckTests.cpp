@@ -3,7 +3,8 @@
 #include "RandomizerMock.hpp"
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-namespace tests {
+namespace tests
+{
 
 using namespace ::testing;
 
@@ -12,14 +13,16 @@ using namespace ::testing;
 // constexpr Card cardToPut{Color::Spades, Figure::Three};
 // } // namespace
 
-TEST(DeckTest, isDeckGeneratedWith52UniqueCards) {
+TEST(DeckTest, isDeckGeneratedWith52UniqueCards)
+{
   auto cardsInDeck = Deck().getCards();
   auto lastElement = std::unique(cardsInDeck.begin(), cardsInDeck.end());
   ASSERT_EQ(cardsInDeck.size(), 52u);
   ASSERT_TRUE(lastElement == cardsInDeck.end());
 }
 
-TEST(DeckTest, whenCardIsPulled_ThisCardShouldBeRemovedFromDeck) {
+TEST(DeckTest, whenCardIsPulled_ThisCardShouldBeRemovedFromDeck)
+{
   Deck sut;
   const auto card = sut.pullCard();
 
@@ -27,20 +30,25 @@ TEST(DeckTest, whenCardIsPulled_ThisCardShouldBeRemovedFromDeck) {
   EXPECT_THAT(sut.getCards(), Not(Contains(card)));
 }
 
-TEST(DeckTest, deckShouldBeRandomizedByExternalRandomizer) {
+TEST(DeckTest, deckShouldBeRandomizedByExternalRandomizer)
+{
   RandomizerMock randomizer;
   EXPECT_CALL(randomizer, shuffleCards(_)).Times(1);
   Deck sut(randomizer);
 }
 
-struct CardTestParam {
+struct CardTestParam
+{
   Card card;
   const char *expectedString;
 };
 
-class CardPrintingTest : public TestWithParam<CardTestParam> {};
+class CardPrintingTest : public TestWithParam<CardTestParam>
+{
+};
 
-TEST_P(CardPrintingTest, print) {
+TEST_P(CardPrintingTest, print)
+{
   const auto [card, expectedString] = GetParam();
 
   std::stringstream stream;

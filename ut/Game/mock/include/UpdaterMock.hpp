@@ -2,7 +2,8 @@
 #include "Updater.hpp"
 #include <gmock/gmock.h>
 
-struct UpdaterMock : public IUpdater {
+struct UpdaterMock : public IUpdater
+{
 
   ~UpdaterMock() override = default;
 

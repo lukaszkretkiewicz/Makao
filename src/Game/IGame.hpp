@@ -1,6 +1,7 @@
 #pragma once
 
-class IGame {
+class IGame
+{
 public:
   virtual ~IGame() = default;
   virtual void run() = 0;

@@ -23,7 +23,7 @@ set(
     Game_test
 )
 
-target_link_libraries(${PROJECT_NAME}_test ${TEST_LIBS} gtest gtest_main gmock)
+target_link_libraries(${PROJECT_NAME}_test ${TEST_LIBS} gtest gtest_main gmock sfml-window sfml-graphics sfml-network sfml-system)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}_test)

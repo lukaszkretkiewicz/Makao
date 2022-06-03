@@ -1,7 +1,8 @@
 #include "IDeck.hpp"
 #include "IPlayer.hpp"
 
-class Player : IPlayer {
+class Player : IPlayer
+{
 
 public:
   Player();

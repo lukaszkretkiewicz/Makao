@@ -3,7 +3,8 @@
 #include <algorithm>
 #include <iostream>
 
-class Randomizer : public IRandomizer {
+class Randomizer : public IRandomizer
+{
 public:
   Cards shuffleCards(const Cards &cards) const override;
 };

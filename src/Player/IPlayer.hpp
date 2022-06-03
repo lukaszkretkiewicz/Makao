@@ -2,7 +2,8 @@
 #include "Card.hpp"
 #include <vector>
 
-class IPlayer {
+class IPlayer
+{
 public:
   virtual Cards getCards() const = 0;
 

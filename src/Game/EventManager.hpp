@@ -1,11 +1,13 @@
 #pragma once
 
-class IEventManager {
+class IEventManager
+{
 public:
   virtual ~IEventManager(){};
 };
 
-class EventManager : public IEventManager {
+class EventManager : public IEventManager
+{
 public:
   ~EventManager() override = default;
 };

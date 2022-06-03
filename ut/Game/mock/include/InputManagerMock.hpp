@@ -2,8 +2,9 @@
 
 #include "InputManager.hpp"
 
-struct InputManagerMock : public IInputManager {
+struct InputManagerMock : public IInputManager
+{
   ~InputManagerMock() override = default;
 
-  MOCK_METHOD(void, handleEvents, (IGuiAdapter &), (override));
+  MOCK_METHOD(void, handleEvents, (sfmlAdapter::IGuiAdapter &), (override));
 };

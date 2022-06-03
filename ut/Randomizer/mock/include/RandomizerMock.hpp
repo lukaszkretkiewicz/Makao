@@ -2,7 +2,8 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-class RandomizerMock : public IRandomizer {
+class RandomizerMock : public IRandomizer
+{
 public:
   RandomizerMock() = default;
   ~RandomizerMock() = default;

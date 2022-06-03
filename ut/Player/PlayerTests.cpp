@@ -3,11 +3,13 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-namespace {
+namespace
+{
 constexpr Card cardToReturn{};
 }
 
-TEST(PlayerTest, whenPlayerIsCreatedWithDeckShouldGetFiveCards) {
+TEST(PlayerTest, whenPlayerIsCreatedWithDeckShouldGetFiveCards)
+{
   testing::StrictMock<DeckMock> deckMock;
   EXPECT_CALL(deckMock, pullCard())
       .WillRepeatedly(testing::Return(cardToReturn));

@@ -1,13 +1,21 @@
 #pragma once
+#include "Entity.hpp"
 
-class IRenderer {
+class IRenderer
+{
 public:
   virtual ~IRenderer(){};
-  virtual void render(IGuiAdapter &) = 0;
+  virtual void render(sfmlAdapter::IGuiAdapter &,
+                      const sfmlAdapter::Entity &objectToDraw) = 0;
 };
 
-class Renderer : public IRenderer {
+class Renderer : public IRenderer
+{
 public:
   ~Renderer() override = default;
-  void render(IGuiAdapter &gui) override { gui.render(); }
+  void render(sfmlAdapter::IGuiAdapter &adapter,
+              const sfmlAdapter::Entity &objectToDraw) override
+  {
+    adapter.render(objectToDraw);
+  }
 };

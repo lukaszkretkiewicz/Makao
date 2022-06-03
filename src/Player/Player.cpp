@@ -2,7 +2,8 @@
 
 Player::Player() = default;
 
-Player::Player(IDeck &deck) {
+Player::Player(IDeck &deck)
+{
   for (int i = 0; i < 5; i++)
     cardsInHand.push_back(deck.pullCard());
 }
