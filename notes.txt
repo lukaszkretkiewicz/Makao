@@ -1,0 +1,4 @@
+Pomysły:
+
+1. stworzyć GameBuilder, który najpierw załaduje wszystkie tekstury, stworzy sprity dla każdej karty itd. 
+2. wyswietlac te sprity, ktore będą obecnie potrzebne

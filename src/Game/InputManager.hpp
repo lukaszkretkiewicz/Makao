@@ -9,10 +9,13 @@ public:
 
 class InputManager : public IInputManager
 {
+private:
+  Event actualEvent;
+
 public:
   ~InputManager() override = default;
   void handleEvents(sfmlAdapter::IGuiAdapter &gui) override
   {
-    gui.handleEvents();
+    gui.handleEvents(actualEvent);
   };
 };

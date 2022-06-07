@@ -4,10 +4,7 @@
 namespace sfmlAdapter
 {
 
-GuiAdapter::GuiAdapter(SpriteManager &spriteManager)
-    : spriteManager(spriteManager)
-{
-}
+GuiAdapter::GuiAdapter() = default;
 
 void GuiAdapter::setupWindow(const std::string &gameName)
 {
@@ -18,20 +15,19 @@ void GuiAdapter::setupWindow(const std::string &gameName)
 
 bool GuiAdapter::shouldCloseWindow() const { return isDone; }
 
-void GuiAdapter::handleEvents()
+void GuiAdapter::handleEvents(Event)
 {
-  while (window->pollEvent(event))
+  while (window->pollEvent(sfmlEvent))
   {
-    if (event.type == sf::Event::Closed)
+    if (sfmlEvent.type == sf::Event::Closed)
       isDone = true;
   }
 }
 
-void GuiAdapter::render(const Entity &objectToDraw)
+void GuiAdapter::render()
 {
   window->clear(sf::Color(0, 150, 0));
-
-  drawTextures(objectToDraw);
+  drawTextures();
   window->display();
 }
 
@@ -40,11 +36,19 @@ void GuiAdapter::addAdapterData(AdapterData &data)
   adapterDataRef.push_back(data);
 }
 
-void GuiAdapter::drawTextures(const Entity &objectToDraw)
+void GuiAdapter::updateSprites(visitor::Nodes nodes)
 {
-  // for (const auto &data : adapterDataRef) {
-  //   window->draw(data.get().sprite);
-  // }
-  window->draw(spriteManager.get(objectToDraw));
+  for (auto &node : nodes)
+  {
+    node.get().accept(spriteManager);
+  }
+}
+
+void GuiAdapter::drawTextures()
+{
+  for (const auto &objectToDraw : entities_all)
+  {
+    window->draw(spriteManager.get(objectToDraw));
+  }
 }
 } // namespace sfmlAdapter

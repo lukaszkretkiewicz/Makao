@@ -8,25 +8,27 @@ namespace sfmlAdapter
 class GuiAdapter : public IGuiAdapter
 {
 public:
-  GuiAdapter(SpriteManager &spriteManager);
+  GuiAdapter();
 
   void setupWindow(const std::string &gameName) override;
 
   bool shouldCloseWindow() const override;
 
-  void handleEvents() override;
+  void handleEvents(Event) override;
 
-  void render(const Entity &objectToDraw) override;
+  void render() override;
 
   void addAdapterData(AdapterData &) override;
 
+  void updateSprites(visitor::Nodes) override;
+
 private:
   std::unique_ptr<sf::RenderWindow> window;
-  sf::Event event;
+  sf::Event sfmlEvent;
   AdapterDataRef adapterDataRef{};
-  SpriteManager &spriteManager;
+  SpriteManager spriteManager{window};
 
   bool isDone{};
-  void drawTextures(const Entity &objectToDraw);
+  void drawTextures();
 };
 } // namespace sfmlAdapter

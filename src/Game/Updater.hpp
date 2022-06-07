@@ -1,15 +1,18 @@
 #pragma once
-
+#include "Node.hpp"
 class IUpdater
 {
 public:
   virtual ~IUpdater(){};
-  virtual void update() = 0;
+  virtual void update(sfmlAdapter::IGuiAdapter &, visitor::Nodes) = 0;
 };
 
 class Updater : public IUpdater
 {
 public:
   ~Updater() override = default;
-  void update() override{};
+  void update(sfmlAdapter::IGuiAdapter &adapter, visitor::Nodes nodes) override
+  {
+    adapter.updateSprites(nodes);
+  }
 };

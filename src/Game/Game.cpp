@@ -1,25 +1,28 @@
 #include "Game.hpp"
+#include "Player.hpp"
 
 Game::Game(sfmlAdapter::IGuiAdapter &adapter, IInputManager &inputManager,
-           IRenderer &renderer, IUpdater &updater)
+           IRenderer &renderer, IUpdater &updater, IDeck &deck, IPlayer &player)
     : adapter(adapter), inputManager(inputManager), renderer(renderer),
-      updater(updater)
+      updater(updater), deck(deck), player(player)
 {
   setupWindow();
+  setupGame();
   // TODO: move to builder class
-  // adapter.addAdapterData(deck.adapterData);
 }
 
-void Game::run()
+void Game::run(IPlayer &, const visitor::Nodes &nodesToVisit)
 {
-  while (!isDone())
+  while (not isDone())
   {
     inputManager.handleEvents(adapter);
-    updater.update();
-    renderer.render(adapter, sfmlAdapter::Entity::Deck);
+    updater.update(adapter, nodesToVisit);
+    renderer.render(adapter);
   }
 }
 
 bool Game::isDone() const { return adapter.shouldCloseWindow(); }
 
 void Game::setupWindow() { adapter.setupWindow("Makao"); }
+
+void Game::setupGame() { player.setupCards(deck); }

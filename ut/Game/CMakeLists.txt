@@ -16,5 +16,8 @@ target_link_libraries(${MODULE_NAME} ${FOLDER_NAME}_lib )
 # Additional libraries to insert manualy
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/ut/${FOLDER_NAME}/mock/include)
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/ut/GuiAdapter/mock/include)
+target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/ut/Deck/mock/include)
+target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/ut/Player/mock/include)
+target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src/Player)
 
 target_link_libraries(${MODULE_NAME} ${FOLDER_NAME}_lib ${FOLDER_NAME}_mock)

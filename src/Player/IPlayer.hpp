@@ -8,4 +8,6 @@ public:
   virtual Cards getCards() const = 0;
 
   virtual void addCard(const Card &card) = 0;
+
+  virtual void setupCards(IDeck &) = 0;
 };

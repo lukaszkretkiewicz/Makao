@@ -1,5 +1,10 @@
 #pragma once
 
+enum class Event
+{
+  StartGame
+};
+
 class IEventManager
 {
 public:

@@ -5,9 +5,10 @@ add_subdirectory(Player)
 add_subdirectory(Helper)
 add_subdirectory(Game)
 add_subdirectory(GuiAdapter)
+add_subdirectory(Visitor)
 
-add_executable(${PROJECT_NAME}_exe main.cpp)
-target_include_directories(${PROJECT_NAME}_exe PUBLIC Game)
+add_executable(${PROJECT_NAME}_exe main.cpp ${CMAKE_SOURCE_DIR}/src/Player)
+target_include_directories(${PROJECT_NAME}_exe PUBLIC Game ${CMAKE_SOURCE_DIR}/src/Player)
 target_link_libraries(
     ${PROJECT_NAME}_exe 
     Deck_lib

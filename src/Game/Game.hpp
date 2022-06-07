@@ -11,18 +11,22 @@
 class Game : public IGame
 {
 public:
-  Game(sfmlAdapter::IGuiAdapter &, IInputManager &, IRenderer &, IUpdater &);
+  Game(sfmlAdapter::IGuiAdapter &, IInputManager &, IRenderer &, IUpdater &,
+       IDeck &, IPlayer &);
 
-  void run() override;
+  void run(IPlayer &player, const visitor::Nodes &) override;
 
 private:
   sfmlAdapter::IGuiAdapter &adapter;
   IInputManager &inputManager;
   IRenderer &renderer;
   IUpdater &updater;
+  IDeck &deck;
+  IPlayer &player;
 
-  Deck deck;
+  visitor::Nodes nodesToVisit;
 
   bool isDone() const;
   void setupWindow();
+  void setupGame();
 };

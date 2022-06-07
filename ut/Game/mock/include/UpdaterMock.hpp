@@ -7,5 +7,6 @@ struct UpdaterMock : public IUpdater
 
   ~UpdaterMock() override = default;
 
-  MOCK_METHOD(void, update, (), (override));
+  MOCK_METHOD(void, update, (sfmlAdapter::IGuiAdapter &, visitor::Nodes),
+              (override));
 };

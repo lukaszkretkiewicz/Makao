@@ -18,6 +18,8 @@ Card Deck::pullCard()
   return result;
 }
 
+void Deck::accept(visitor::Visitor &visitor) const { visitor.visitDeck(*this); }
+
 void Deck::createCards()
 {
   for (auto figure : figures_all)

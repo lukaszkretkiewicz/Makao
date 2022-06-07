@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 
 namespace sfmlAdapter
 {
@@ -59,6 +60,28 @@ enum class Entity
   KingDiamonds,
   AceDiamonds
 };
+
+using Entities = std::vector<sfmlAdapter::Entity>;
+
+constexpr std::initializer_list<Entity> entities_all = {
+    Entity::Deck,          Entity::Pile,          Entity::TwoSpades,
+    Entity::ThreeSpades,   Entity::FourSpades,    Entity::FiveSpades,
+    Entity::SixSpades,     Entity::SevenSpades,   Entity::EightSpades,
+    Entity::NineSpades,    Entity::TenSpades,     Entity::JackSpades,
+    Entity::QueenSpades,   Entity::KingSpades,    Entity::AceSpades,
+    Entity::TwoClubs,      Entity::ThreeClubs,    Entity::FourClubs,
+    Entity::FiveClubs,     Entity::SixClubs,      Entity::SevenClubs,
+    Entity::EightClubs,    Entity::NineClubs,     Entity::TenClubs,
+    Entity::JackClubs,     Entity::QueenClubs,    Entity::KingClubs,
+    Entity::AceClubs,      Entity::TwoHearts,     Entity::ThreeHearts,
+    Entity::FourHearts,    Entity::FiveHearts,    Entity::SixHearts,
+    Entity::SevenHearts,   Entity::EightHearts,   Entity::NineHearts,
+    Entity::TenHearts,     Entity::JackHearts,    Entity::QueenHearts,
+    Entity::KingHearts,    Entity::AceHearts,     Entity::TwoDiamonds,
+    Entity::ThreeDiamonds, Entity::FourDiamonds,  Entity::FiveDiamonds,
+    Entity::SixDiamonds,   Entity::SevenDiamonds, Entity::EightDiamonds,
+    Entity::NineDiamonds,  Entity::TenDiamonds,   Entity::JackDiamonds,
+    Entity::QueenDiamonds, Entity::KingDiamonds,  Entity::AceDiamonds};
 
 const std::map<Entity, std::string> hashedTextureNames{
     {Entity::Deck, "cardBack"},           {Entity::Pile, "cardBack"},

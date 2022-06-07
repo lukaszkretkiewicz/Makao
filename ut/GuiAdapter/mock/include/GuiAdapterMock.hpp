@@ -9,4 +9,6 @@ struct GuiAdapterMock : public sfmlAdapter::IGuiAdapter
   MOCK_METHOD(void, handleEvents, (), (override));
   MOCK_METHOD(void, render, (const sfmlAdapter::Entity &), (override));
   MOCK_METHOD(void, addAdapterData, (sfmlAdapter::AdapterData &), (override));
+  MOCK_METHOD(void, updateSprites,
+              (std::vector<std::reference_wrapper<visitor::Node>>), (override));
 };
