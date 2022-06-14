@@ -6,7 +6,7 @@ Deck::Deck() { createCards(); }
 Deck::Deck(const IRandomizer &randomizer)
 {
   createCards();
-  randomizer.shuffleCards(cards);
+  cards = randomizer.shuffleCards(cards);
 }
 
 Cards Deck::getCards() const { return cards; }

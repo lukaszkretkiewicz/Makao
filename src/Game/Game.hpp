@@ -1,6 +1,5 @@
 #pragma once
 #include "Deck.hpp"
-#include "EventManager.hpp"
 #include "IGame.hpp"
 #include "IGuiAdapter.hpp"
 #include "InputManager.hpp"
@@ -14,7 +13,7 @@ public:
   Game(sfmlAdapter::IGuiAdapter &, IInputManager &, IRenderer &, IUpdater &,
        IDeck &, IPlayer &);
 
-  void run(IPlayer &player, const visitor::Nodes &) override;
+  void run(const visitor::Nodes &) override;
 
 private:
   sfmlAdapter::IGuiAdapter &adapter;
@@ -28,5 +27,5 @@ private:
 
   bool isDone() const;
   void setupWindow();
-  void setupGame();
+  void resetGame();
 };

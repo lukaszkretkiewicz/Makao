@@ -8,11 +8,6 @@ namespace tests
 
 using namespace ::testing;
 
-// namespace {
-// constexpr size_t twoPlayers{2};
-// constexpr Card cardToPut{Color::Spades, Figure::Three};
-// } // namespace
-
 TEST(DeckTest, isDeckGeneratedWith52UniqueCards)
 {
   auto cardsInDeck = Deck().getCards();
@@ -33,7 +28,8 @@ TEST(DeckTest, whenCardIsPulled_ThisCardShouldBeRemovedFromDeck)
 TEST(DeckTest, deckShouldBeRandomizedByExternalRandomizer)
 {
   RandomizerMock randomizer;
-  EXPECT_CALL(randomizer, shuffleCards(_)).Times(1);
+  Cards cards;
+  EXPECT_CALL(randomizer, shuffleCards(cards)).Times(1);
   Deck sut(randomizer);
 }
 

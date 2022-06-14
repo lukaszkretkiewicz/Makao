@@ -1,5 +1,4 @@
 #include "DeckMock.hpp"
-#include "EventManagerMock.hpp"
 #include "Game.hpp"
 #include "GuiAdapterMock.hpp"
 #include "InputManagerMock.hpp"
@@ -21,7 +20,8 @@ struct GameFixture : public Test
   UpdaterMock updaterMock;
   DeckMock deckMock;
   PlayerMock playerMock;
-  Game sut{guiMock, inputManagerMock, rendererMock, updaterMock, deckMock};
+  Game sut{guiMock,     inputManagerMock, rendererMock,
+           updaterMock, deckMock,         playerMock};
 };
 
 TEST_F(GameFixture, gameShouldRunInTheLoop)
@@ -31,7 +31,7 @@ TEST_F(GameFixture, gameShouldRunInTheLoop)
       .WillOnce(Return(true));
   EXPECT_CALL(inputManagerMock, handleEvents(Ref(guiMock))).Times(1);
   EXPECT_CALL(updaterMock, update(Ref(guiMock), _)).Times(1);
-  EXPECT_CALL(rendererMock, render(Ref(guiMock), _)).Times(1);
+  EXPECT_CALL(rendererMock, render(Ref(guiMock))).Times(1);
   visitor::Nodes nodesToVisit;
 
   sut.run(playerMock, nodesToVisit);
@@ -42,6 +42,6 @@ TEST(RendererTest, as)
   Renderer sut;
   GuiAdapterMock guiMock;
 
-  sut.render(guiMock, sfmlAdapter::Entity::Deck);
+  sut.render(guiMock);
 }
 } // namespace tests

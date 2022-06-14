@@ -6,12 +6,17 @@ Game::Game(sfmlAdapter::IGuiAdapter &adapter, IInputManager &inputManager,
     : adapter(adapter), inputManager(inputManager), renderer(renderer),
       updater(updater), deck(deck), player(player)
 {
+  for (const auto &card : player.getCards())
+  {
+    std::cout << card;
+  }
+  std::cout << "2222222222222222222\n";
   setupWindow();
-  setupGame();
+  resetGame();
   // TODO: move to builder class
 }
 
-void Game::run(IPlayer &, const visitor::Nodes &nodesToVisit)
+void Game::run(const visitor::Nodes &nodesToVisit)
 {
   while (not isDone())
   {
@@ -23,6 +28,6 @@ void Game::run(IPlayer &, const visitor::Nodes &nodesToVisit)
 
 bool Game::isDone() const { return adapter.shouldCloseWindow(); }
 
-void Game::setupWindow() { adapter.setupWindow("Makao"); }
+void Game::setupWindow() { adapter.setupApplication("Makao"); }
 
-void Game::setupGame() { player.setupCards(deck); }
+void Game::resetGame() { player.setupCards(deck); }

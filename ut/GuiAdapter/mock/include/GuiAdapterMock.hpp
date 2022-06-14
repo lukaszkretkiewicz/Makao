@@ -5,10 +5,9 @@
 struct GuiAdapterMock : public sfmlAdapter::IGuiAdapter
 {
   MOCK_METHOD(bool, shouldCloseWindow, (), (const, override));
-  MOCK_METHOD(void, setupWindow, (const std::string &), (override));
-  MOCK_METHOD(void, handleEvents, (), (override));
-  MOCK_METHOD(void, render, (const sfmlAdapter::Entity &), (override));
-  MOCK_METHOD(void, addAdapterData, (sfmlAdapter::AdapterData &), (override));
+  MOCK_METHOD(void, setupApplication, (const std::string &), (override));
+  MOCK_METHOD(void, handleEvents, (Event), (override));
+  MOCK_METHOD(void, render, (), (override));
   MOCK_METHOD(void, updateSprites,
               (std::vector<std::reference_wrapper<visitor::Node>>), (override));
 };

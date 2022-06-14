@@ -6,11 +6,12 @@ namespace sfmlAdapter
 
 GuiAdapter::GuiAdapter() = default;
 
-void GuiAdapter::setupWindow(const std::string &gameName)
+void GuiAdapter::setupApplication(const std::string &gameName)
 {
   window =
       std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 600), gameName);
   window->setFramerateLimit(60);
+  spriteManager.buildSprites();
 }
 
 bool GuiAdapter::shouldCloseWindow() const { return isDone; }
@@ -29,16 +30,12 @@ void GuiAdapter::render()
   window->clear(sf::Color(0, 150, 0));
   drawTextures();
   window->display();
+  spriteManager.resetEntitiesToDraw();
 }
 
-void GuiAdapter::addAdapterData(AdapterData &data)
+void GuiAdapter::updateSprites(const visitor::Nodes &nodes)
 {
-  adapterDataRef.push_back(data);
-}
-
-void GuiAdapter::updateSprites(visitor::Nodes nodes)
-{
-  for (auto &node : nodes)
+  for (const auto &node : nodes)
   {
     node.get().accept(spriteManager);
   }
@@ -46,7 +43,7 @@ void GuiAdapter::updateSprites(visitor::Nodes nodes)
 
 void GuiAdapter::drawTextures()
 {
-  for (const auto &objectToDraw : entities_all)
+  for (const auto &objectToDraw : spriteManager.getEntitiesToDraw())
   {
     window->draw(spriteManager.get(objectToDraw));
   }

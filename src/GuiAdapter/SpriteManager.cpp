@@ -13,23 +13,17 @@ SpriteManager::SpriteManager(const std::unique_ptr<sf::RenderWindow> &window)
 
 sf::Sprite &SpriteManager::get(const Entity &object)
 {
-  if (not sprites.count(object))
-  {
-    sprites.emplace(object, createSpriteForMap(object));
-  }
   return sprites.at(object);
 }
 
 void SpriteManager::visitDeck(const IDeck &)
 {
-  if (sprites.count(Entity::Deck))
-  {
-    auto &deckSprite = sprites.at(Entity::Deck);
-    deckSprite.setOrigin(deckSprite.getLocalBounds().width / 2,
-                         deckSprite.getLocalBounds().height / 2);
-    deckSprite.setPosition(window->getSize().x / 2 - 100,
-                           window->getSize().y / 2);
-  }
+  auto &deckSprite = sprites.at(Entity::Deck);
+  deckSprite.setOrigin(deckSprite.getLocalBounds().width / 2,
+                       deckSprite.getLocalBounds().height / 2);
+  deckSprite.setPosition(window->getSize().x / 2 - 100,
+                         window->getSize().y / 2);
+  entitiesToDrawDuringThisTick.push_back(Entity::Deck);
 }
 
 void SpriteManager::visitPlayer(const IPlayer &player)
@@ -37,16 +31,17 @@ void SpriteManager::visitPlayer(const IPlayer &player)
   // 1. znajdź miejsce na karty
   // 2. pobierz potrzebne sprity dla kart
   // 3.
+  int i = 0;
   for (const auto &card : player.getCards())
   {
-    int i = 0;
     const auto &sfmlEntity = convertCardStructToSpriteEnum(card);
-    auto &cardSprite = get(sfmlEntity);
+    auto &cardSprite = sprites.at(sfmlEntity);
     cardSprite.setOrigin(cardSprite.getLocalBounds().width / 2,
                          cardSprite.getLocalBounds().height / 2);
-    cardSprite.setPosition(window->getSize().x / 2 - i,
-                           window->getSize().y / 2);
-    i += 100;
+    cardSprite.setPosition(window->getSize().x / 2 + i,
+                           window->getSize().y / 2 + 220);
+    i += 25;
+    entitiesToDrawDuringThisTick.push_back(sfmlEntity);
   }
 }
 
@@ -55,6 +50,24 @@ sf::Sprite SpriteManager::createSpriteForMap(const Entity &object)
   std::string textureToLoad = hashedTextureNames.at(object);
   sf::Sprite sprite{textureManager.get(textureToLoad)};
   return sprite;
+}
+
+void SpriteManager::buildSprites()
+{
+  for (const auto &entity : entities_all)
+  {
+    sprites.emplace(entity, createSpriteForMap(entity));
+  }
+}
+
+void SpriteManager::resetEntitiesToDraw()
+{
+  entitiesToDrawDuringThisTick.clear();
+}
+
+Entities SpriteManager::getEntitiesToDraw() const
+{
+  return entitiesToDrawDuringThisTick;
 }
 
 Entity SpriteManager::convertCardStructToSpriteEnum(const Card &card)
@@ -105,7 +118,7 @@ Entity SpriteManager::convertCardStructToSpriteEnum(const Card &card)
       result = Entity::AceSpades;
       break;
     }
-    [[fallthrough]];
+    break;
   case Color::Clubs:
     switch (card.figure)
     {
@@ -149,7 +162,7 @@ Entity SpriteManager::convertCardStructToSpriteEnum(const Card &card)
       result = Entity::AceClubs;
       break;
     }
-    [[fallthrough]];
+    break;
   case Color::Hearts:
     switch (card.figure)
     {
@@ -193,7 +206,7 @@ Entity SpriteManager::convertCardStructToSpriteEnum(const Card &card)
       result = Entity::AceHearts;
       break;
     }
-    [[fallthrough]];
+    break;
   case Color::Diamonds:
     switch (card.figure)
     {

@@ -10,7 +10,7 @@ class GuiAdapter : public IGuiAdapter
 public:
   GuiAdapter();
 
-  void setupWindow(const std::string &gameName) override;
+  void setupApplication(const std::string &gameName) override;
 
   bool shouldCloseWindow() const override;
 
@@ -18,14 +18,11 @@ public:
 
   void render() override;
 
-  void addAdapterData(AdapterData &) override;
-
-  void updateSprites(visitor::Nodes) override;
+  void updateSprites(const visitor::Nodes &) override;
 
 private:
   std::unique_ptr<sf::RenderWindow> window;
   sf::Event sfmlEvent;
-  AdapterDataRef adapterDataRef{};
   SpriteManager spriteManager{window};
 
   bool isDone{};

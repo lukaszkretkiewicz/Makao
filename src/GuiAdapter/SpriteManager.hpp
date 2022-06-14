@@ -18,11 +18,15 @@ public:
   sf::Sprite &get(const Entity &);
   void visitDeck(const IDeck &) override;
   void visitPlayer(const IPlayer &) override;
+  void buildSprites();
+  void resetEntitiesToDraw();
+  Entities getEntitiesToDraw() const;
 
 private:
   std::map<Entity, sf::Sprite> sprites;
   TextureManager textureManager;
   const std::unique_ptr<sf::RenderWindow> &window;
+  Entities entitiesToDrawDuringThisTick;
 
   sf::Sprite createSpriteForMap(const Entity &);
   Entity convertCardStructToSpriteEnum(const Card &);
